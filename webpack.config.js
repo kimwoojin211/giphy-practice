@@ -16,7 +16,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'apiprac',
+      title: 'giphyprac',
       template: './src/index.html',
       inject: 'body'
     }),
