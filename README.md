@@ -21,9 +21,6 @@
 * _easy-to-understand_
 * _format_
 
-* "npm run install"
-* "npm run build"
-
 ## Known Bugs
 
 * _Any known issues_
