@@ -12,13 +12,13 @@ $('.submit').click(function() {
   $('#searchInput').val("");
   let request = new XMLHttpRequest();
   let type = $(this).attr("id");
-  console.log(type);
   const url = `https://api.giphy.com/v1/gifs/${type}?api_key=${process.env.API_KEY}&q=${search}&limit=5&offset=0&rating=g&lang=en`;
-  const uploadUrl = `https://upload.giphy.com/v1/gifs?&api_key=${process.env.API_KEY}`;
+  const uploadUrl = `https://upload.giphy.com/v1/gifs?api_key=${process.env.API_KEY}`;
+  const uploadparamString= new URLSearchParams(`&source_image_url=https://img1.picmix.com/output/stamp/normal/3/0/5/5/1385503_6f527.gif`);
 
   request.onreadystatechange = function() {
-    console.log(this.status);
     if (this.readyState === 4 && this.status === 200) {
+      console.log(this.responseText);
       const response = JSON.parse(this.responseText);
       getElements(response);
     }
@@ -26,10 +26,13 @@ $('.submit').click(function() {
 
   if (type === "upload") {
     request.open("POST", uploadUrl, true);
+    request.send(uploadparamString);
+    console.log("sup");
   } else {
     request.open("GET", url, true);
+    request.send();
   }
-  request.send();
+
 
   function getElements(response) {
     if (type === "random")
